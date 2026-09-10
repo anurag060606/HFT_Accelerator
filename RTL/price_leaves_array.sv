@@ -8,10 +8,10 @@ module price_leaves_array #(
     parameter int WIDTH=32
 ) (
     input logic clk,rst_n, wr_en,
-    input logic [$clog2(NUM_INDICES)-1:0] wr_indx;
-    input logic wr_increment;
-    input logic [WIDTH-1:0] change;
-    output logic [WIDTH-1:0] mem_exposed [NUM_INDICES];
+    input logic [$clog2(NUM_INDICES)-1:0] wr_indx,
+    input logic wr_increment,
+    input logic [WIDTH-1:0] change,
+    output logic [WIDTH-1:0] mem_exposed [NUM_INDICES]
 );
 
     logic [WIDTH-1:0] mem [NUM_INDICES];
