@@ -14,7 +14,7 @@
 module price_indx_mapper #(
     parameter  int WIDTH  = 32,
     parameter int P_MIN= 32'd9000,//$90 default min
-    parameter int P_MAX=32'11000,//$110 deafult max
+    parameter int P_MAX=32'd11000,//$110 deafult max
     parameter int TICK=32'd1//1 cent default tick size 
 ) (
     input logic [WIDTH-1:0] price_in,
@@ -33,11 +33,11 @@ module price_indx_mapper #(
     //if tick =4 there will be 500 levels of prices
 
     always_comb begin
-        if(price_in<P_MIN || price_in >=P_MAX) begin
-            valid_out<=0;
+        if(price_in<P_MIN || price_in >= P_MAX) begin
+            valid_out=0;
         end else begin
-            valid_out<=1;
-            indx_out<=(price_in-P_MIN)>>TICK;
+            valid_out=1;
+            indx_out=(price_in-P_MIN)>>TICK;
         end
     end
 
