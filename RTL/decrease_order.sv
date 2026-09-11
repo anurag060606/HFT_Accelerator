@@ -116,7 +116,7 @@ module decrease_order #(
                             resting_size_reg<=hash_mem_rd_size;
                             dec_amount_reg<=captr_full_delete? hash_mem_rd_size:(captr_execute_size < hash_mem_rd_size ? captr_execute_size: hash_mem_rd_size);
                             should_invalidate<= captr_full_delete || (captr_execute_size>=hash_mem_rd_size);
-                            fsm_state<=MAPPING;
+                            fsm_state<=MAP;
                         end
                     end
                 end
