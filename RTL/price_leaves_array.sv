@@ -19,12 +19,12 @@ module price_leaves_array #(
     always_ff @( posedge clk ) begin
         if(!rst_n) begin
             for(int i=0;i<NUM_INDICES;i=i+1)
-                mem[i]<=0;
+                mem[i]=0;
         end else if(wr_en) begin //order book has to register a change because parser sent something 
             if(wr_increment)
                 mem[wr_indx]<=mem[wr_indx]+change;
             else
-                mem[wr_indx]<= (mem[wr_indx>change])?(mem[wr_indx]-change):0;
+                mem[wr_indx]<= (mem[wr_indx]>change)?(mem[wr_indx]-change):0;
         end
     end
     assign mem_exposed=mem;

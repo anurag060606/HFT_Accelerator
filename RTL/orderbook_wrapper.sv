@@ -156,11 +156,11 @@ module orderbook_wrapper
     //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //computing the output of the entire orderbook module
 
-    assign best_bid=P_MIN+bid_best_indx;
+    assign best_bid=P_MIN+PRICE_WIDTH'(bid_best_indx);
     assign best_bid_valid= bid_best_valid;
     assign best_bid_size=bid_leaves[bid_best_indx];
 
-    assign best_ask=P_MIN+ask_best_indx;
+    assign best_ask=P_MIN+PRICE_WIDTH'(ask_best_indx);
     assign best_ask_valid= ask_best_valid;
     assign best_ask_size=ask_leaves[ask_best_indx];
     //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

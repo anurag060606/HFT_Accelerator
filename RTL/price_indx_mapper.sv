@@ -20,10 +20,10 @@ module price_indx_mapper #(
     input logic [PRICE_WIDTH-1:0] price_in,
     
     output logic valid_out,
-    output logic [$clog2((P_MAX-P_MIN)>>TICK):0]  indx_out,
+    output logic [$clog2((P_MAX-P_MIN)>>TICK)-1:0]  indx_out,
 
 
-    input logic [$clog2((P_MAX-P_MIN)>>TICK):0]  indx_in,
+    input logic [$clog2((P_MAX-P_MIN)>>TICK)-1:0]  indx_in,
     output logic [PRICE_WIDTH-1:0] price_out
 );
     localparam int num_possible_indices = (P_MAX-P_MIN)>>TICK;
@@ -35,13 +35,15 @@ module price_indx_mapper #(
     always_comb begin
         if(price_in<P_MIN || price_in >= P_MAX) begin
             valid_out=0;
+            indx_out  = '0;
+
         end else begin
             valid_out=1;
-            indx_out=(price_in-P_MIN)>>TICK;
+            indx_out=($clog2((P_MAX-P_MIN)>>TICK))'((price_in-P_MIN)>>TICK);
         end
     end
 
-    assign price_out = P_MIN+(indx_in << TICK);
+    assign price_out = P_MIN+(PRICE_WIDTH'(indx_in) << TICK);
 
 endmodule
 `default_nettype wire

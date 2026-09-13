@@ -49,6 +49,7 @@ module itch_decoder (
             8'h44:
             //code to add a new order
                 decode_type=2'b11;//simplified internal mapping
+            default:;
         endcase
     endfunction
 
