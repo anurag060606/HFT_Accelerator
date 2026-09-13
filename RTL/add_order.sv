@@ -34,7 +34,7 @@ module add_order #(
     output logic [ORDER_ID_WIDTH-1:0] tab_wr_order_id,
     output logic [SIZE_WIDTH-1:0] tab_wr_size,
     input logic tab_wr_done,
-    input logic lut_wr_collision
+    input logic tab_wr_collision
 );
 
     typedef enum logic [2:0] {IDLE, MAPPING, ARB, TAB, FINISH } states;
@@ -87,7 +87,7 @@ module add_order #(
                     tab_wr_price<=price;
                     tab_wr_size<=size;
                     if(tab_wr_done)begin
-                        error<=lut_wr_collision;
+                        error<=tab_wr_collision;
                         fsm_state<=FINISH;
                     end
                 end

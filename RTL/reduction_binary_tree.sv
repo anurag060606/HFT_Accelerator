@@ -15,12 +15,12 @@
 
 module reduction_binary_tree #(
     parameter int NUM_INDICES = 2000,
-    parameter int WIDTH=32,
+    parameter int SIZE_WIDTH=32,
     parameter bit NEED_HIGH=1
 ) (
 
     input logic clk, rst_n,
-    input logic [WIDTH-1:0] mem_in [NUM_INDICES],
+    input logic [SIZE_WIDTH-1:0] mem_in [NUM_INDICES],
 
     output logic [$clog2(NUM_INDICES)-1:0] best_indx,
     output logic best_valid

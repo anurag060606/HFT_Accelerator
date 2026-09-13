@@ -15,20 +15,20 @@
 
 module mem_arbiter #(
     parameter int NUM_INDICES=2000,
-    parameter int WIDTH=32
+    parameter int SIZE_WIDTH=32
 ) (
     input logic clk, rst_n,
     //add_order in
     input logic add_req,
     input logic [$clog2(NUM_INDICES)-1:0] add_req_indx,
-    input logic [WIDTH-1:0] add_req_change,
+    input logic [SIZE_WIDTH-1:0] add_req_change,
     input logic add_req_increment,
     output logic add_req_grant,
 
     //decrease_order in
     input logic dec_req,
     input logic [$clog2(NUM_INDICES)-1:0] dec_req_indx,
-    input logic [WIDTH-1:0] dec_req_change,
+    input logic [SIZE_WIDTH-1:0] dec_req_change,
     input logic dec_req_increment,
     output logic dec_req_grant,
 
@@ -36,7 +36,7 @@ module mem_arbiter #(
     output logic mem_wr_en,
     output logic [$clog2(NUM_INDICES)-1:0] mem_wr_indx,
     output logic mem_wr_increment, 
-    output logic [WIDTH-1:0] mem_wr_change
+    output logic [SIZE_WIDTH-1:0] mem_wr_change
 
 );
 

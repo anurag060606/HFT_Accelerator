@@ -12,19 +12,19 @@
 `default_nettype none
 
 module price_indx_mapper #(
-    parameter  int WIDTH  = 32,
+    parameter  int PRICE_WIDTH  = 32,
     parameter int P_MIN= 32'd9000,//$90 default min
     parameter int P_MAX=32'd11000,//$110 deafult max
     parameter int TICK=32'd1//1 cent default tick size 
 ) (
-    input logic [WIDTH-1:0] price_in,
+    input logic [PRICE_WIDTH-1:0] price_in,
     
     output logic valid_out,
     output logic [$clog2((P_MAX-P_MIN)>>TICK):0]  indx_out,
 
 
-    output logic [$clog2((P_MAX-P_MIN)>>TICK):0]  indx_in,
-    output logic [WIDTH-1:0] price_out
+    input logic [$clog2((P_MAX-P_MIN)>>TICK):0]  indx_in,
+    output logic [PRICE_WIDTH-1:0] price_out
 );
     localparam int num_possible_indices = (P_MAX-P_MIN)>>TICK;
     //11000-9000=2000 cents difference
